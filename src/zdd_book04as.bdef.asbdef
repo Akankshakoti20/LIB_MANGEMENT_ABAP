@@ -1,0 +1,59 @@
+managed implementation in class zcl_book04as unique;
+strict ( 1 );
+with draft;
+
+define behavior for ZDD_BOOK04AS alias Book
+persistent table zbook04
+draft table ZRAP_BOOK004
+etag master LocalLastChangedAt
+lock master total etag LastChangedAt
+authorization master( global )
+
+{
+  field ( mandatory : create )
+   BookID;
+
+  field ( readonly )
+   LocalCreatedAt,
+   LocalCreatedBy,
+   LastChangedAt,
+   LocalLastChangedAt,
+   LocalLastChangedBy;
+
+  field ( readonly : update )
+   BookID;
+
+
+  create;
+  update;
+  delete;
+
+  draft action Edit;
+  draft action Activate;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+
+  internal action incrementBookCount;
+  internal action decrementBookCount;
+
+  validation valcurrencycode on save {update;create;}
+
+  mapping for ZBOOK04
+  {
+    BookID = book_id;
+    BookName = book_name;
+    BookPrice = book_price;
+    CurrencyCode = currency_code;
+    BookAuthor = book_author;
+    Department = department;
+    BookCount = book_count;
+    AvailCount = avail_count;
+
+    LocalCreatedBy = local_created_by;
+    LocalCreatedAt = local_created_at;
+    LocalLastChangedBy = local_last_changed_by;
+    LocalLastChangedAt = local_last_changed_at;
+    LastChangedAt = last_changed_at;
+  }
+}

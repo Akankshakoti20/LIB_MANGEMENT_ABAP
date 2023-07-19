@@ -1,0 +1,66 @@
+managed;
+strict ( 1 );
+with draft;
+
+define behavior for ZDD_LIBRARY04AS alias Library
+implementation in class ZCL_LIBRARY04AS unique
+persistent table zlibrary04
+draft table zrap_library004
+etag master LocalLastChangedAt
+lock master total etag LastChangedAt
+authorization master ( global )
+
+{
+  field ( mandatory : create ) IssueID;
+  field ( readonly : update ) IssueID;
+  // For automatic id creation
+  //  field  ( numbering : managed  ) IssueID;
+  //field ( readonly : update ) StudID, BookID, IsDate;
+  field ( readonly )
+  LocalCreatedAt,
+  IsReturn,
+  LocalCreatedBy,
+  LastChangedAt,
+  LocalLastChangedAt,
+  LocalLastChangedBy;
+
+  create;
+  update;
+  delete;
+
+  // To update avaible books in book table and books limit in student detailstable
+  association _BOOK { create; }
+  association _Student { create; }
+
+  draft action Edit;
+  draft action Activate;
+  draft action Discard;
+  draft action Resume;
+  draft determine action Prepare;
+
+  action ( features : instance ) returnBook result [1] $self;
+  determination issueBook on save { field BookID, IsReturn; create; }
+
+  //  //Methods to validate BookId and StudentId
+  validation validateBookId on save { field BookID; create; }
+  validation validateStudentId on save { field StudID; create; }
+
+  validation valReturnDate on save { update; create; }
+  mapping for zlibrary04
+    {
+      IssueID            = issue_id;
+      StudID             = stud_id;
+      BookID             = book_id;
+      IsDate             = is_date;
+      RetDate            = ret_date;
+      IsReturn           = is_return;
+      CurrencyCode       = currency_code;
+      Fine               = fine;
+      LocalCreatedBy     = local_created_by;
+      LocalCreatedAt     = local_created_at;
+      LocalLastChangedBy = local_last_changed_by;
+      LocalLastChangedAt = local_last_changed_at;
+      LastChangedAt      = last_changed_at;
+    }
+
+}

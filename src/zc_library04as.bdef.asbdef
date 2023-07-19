@@ -1,0 +1,27 @@
+projection;
+strict ( 1 );
+use draft;
+
+
+//For getting create,edit and delete buttons in the inteface
+
+define behavior for ZC_LIBRARY04AS alias Library
+use etag
+
+{
+  use create;
+  use update;
+  use delete;
+
+  use action Edit;
+  use action Activate;
+  use action Discard;
+  use action Resume;
+  use action Prepare;
+
+  // To update avaible books in book table and books limit in student detailstable
+  use association _BOOK { create; }
+  use association _Student { create; }
+
+  use action returnBook;
+}

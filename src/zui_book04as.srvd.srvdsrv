@@ -1,0 +1,4 @@
+@EndUserText.label: 'Service definition forZC_BOOK04AS'
+define service ZUI_BOOK04AS {
+  expose ZC_BOOK04AS as Book;
+}

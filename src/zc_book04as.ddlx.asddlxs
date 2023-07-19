@@ -1,0 +1,122 @@
+@Metadata.layer: #CORE
+@UI: {
+  headerInfo: {
+    typeName: 'Book', 
+    typeNamePlural: 'Books'
+  }
+}
+annotate view ZC_BOOK04AS with
+{
+  @UI.facet: [ {
+    id: 'idIdentification', 
+    type: #IDENTIFICATION_REFERENCE, 
+    label: 'Book', 
+    position: 10 
+  } ]
+  @UI.lineItem: [ {
+    position: 10 , 
+    importance: #MEDIUM, 
+    label: ''
+  } ]
+  @UI.identification: [ {
+    position: 10 , 
+    label: ''
+  } ]
+  BookID;
+  
+  @UI.lineItem: [ {
+    position: 20 , 
+    importance: #MEDIUM, 
+    label: 'BookName'
+  } ]
+  @UI.identification: [ {
+    position: 20 , 
+    label: 'BookName'
+  } ]
+  BookName;
+  
+  @UI.lineItem: [ {
+    position: 30 , 
+    importance: #MEDIUM, 
+    label: ''
+  } ]
+  @UI.identification: [ {
+    position: 30 , 
+    label: ''
+  } ]
+  BookPrice;
+  
+  @UI.lineItem: [ {
+    position: 40 , 
+    importance: #MEDIUM, 
+    label: 'CurrencyCode'
+  } ]
+  @UI.identification: [ {
+    position: 40 , 
+    label: 'CurrencyCode'
+  } ]
+  CurrencyCode;
+  
+  @UI.lineItem: [ {
+    position: 50 , 
+    importance: #MEDIUM, 
+    label: ''
+  } ]
+  @UI.identification: [ {
+    position: 50 , 
+    label: ''
+  } ]
+  BookAuthor;
+  
+  @UI.lineItem: [ {
+    position: 60 , 
+    importance: #MEDIUM, 
+    label: ''
+  } ]
+  @UI.identification: [ {
+    position: 60 , 
+    label: ''
+  } ]
+  Department;
+  
+  @UI.lineItem: [ {
+    position: 70 , 
+    importance: #MEDIUM, 
+    label: ''
+  } ]
+  @UI.identification: [ {
+    position: 70 , 
+    label: ''
+  } ]
+  BookCount;
+  
+  @UI.lineItem: [ {
+    position: 80 , 
+    importance: #MEDIUM, 
+    label: 'AvailableCount'
+  } ]
+  @UI.identification: [ {
+    position: 80 , 
+    label: 'AvailableCount'
+  } ]
+  AvailCount;
+  
+//  @UI.lineItem: [ {
+//    position: 90 , 
+//    importance: #MEDIUM, 
+//    label: 'TotalValue'
+//  } ]
+//  @UI.identification: [ {
+//    position: 90 , 
+//    label: 'TotalValue'
+//  } ]
+//  TotalValue;
+//    @UI.identification: [{
+//        position: 90,
+//        label: 'Total Value',
+//        value: 'BookCount'
+//     }]
+  
+  @UI.hidden: true
+  LocalLastChangedAt;
+}
